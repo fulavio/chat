@@ -1,36 +1,36 @@
- - Funções para a utilização de sockets e tarefas como "decomposição de uma mensagem", e "comunicação especializada", foram implementadas no módulo 'networking'.
+- Funções para a utilização de sockets e tarefas como "decomposição de uma mensagem", e "comunicação especializada", foram implementadas no módulo 'networking'.
  
- - As mensagens são transmitidas no formato "cabeçalho/mensagem"(excluindo as barras). O cabeçalho possui três bytes. O primeiro byte contém o tipo da mensagem, e os dois bytes seguintes informam o tamanho em bytes da mensagem (excluindo o cabeçalho).
+- As mensagens são transmitidas no formato "cabeçalho/mensagem"(excluindo as barras). O cabeçalho possui três bytes. O primeiro byte contém o tipo da mensagem, e os dois bytes seguintes informam o tamanho em bytes da mensagem (excluindo o cabeçalho).
  
- tipos de mensagem:
-	0x01 - mensagem comum no chat(broadcast)
+tipos de mensagem:
+    0x01 - mensagem comum no chat(broadcast)
     0x02 - mensagem privada
     0x03 - alteração do nickname no momento da conexão
 	
- Exemplo: 0x01/91/Vendedora ouve “Sim” ao perguntar se o cliente quer cartão C&A e fica sem saber o que fazer
+Exemplo: 0x01/91/Vendedora ouve “Sim” ao perguntar se o cliente quer cartão C&A e fica sem saber o que fazer
  
- - Duas estruturas foram implementadas, Peer e Packet. Peer é utilizado para agrupar os sockets.
- No servidor, essa estrutura possui:
+- Duas estruturas foram implementadas, Peer e Packet. Peer é utilizado para agrupar os sockets.
+No servidor, essa estrutura possui:
  
- 1 - Um socket para o servidor
- 2 - Array de sockets para os clients, com MAX_CLIENT posições
- 3 - Array de "Packets", com MAX_CLIENT posições
- 4 - Campo com a quantidade de clientes conectados
+1 - Um socket para o servidor
+2 - Array de sockets para os clients, com MAX_CLIENT posições
+3 - Array de "Packets", com MAX_CLIENT posições
+4 - Campo com a quantidade de clientes conectados
 
- - A estrutura "Packet" é utilizada para representar dados de uma mensagem e o estado do recebimento dessa mensagem. Para ambos cliente e servidor, a estrutura "Packet" contém:
+- A estrutura "Packet" é utilizada para representar dados de uma mensagem e o estado do recebimento dessa mensagem. Para ambos cliente e servidor, a estrutura "Packet" contém:
  
- 1 - Campo "message" que é utilizado para identificar o tipo da mensagem enviada.
- 2 - Ponteiro para uma string que contém o nome do cliente.
- 3 - Ponteiro para um bloco de memória onde as mensagens do cliente serão armazenadas.
- 4 - Tamanho da mensagem recebida como contido no cabeçalho.
- 5 - Estado atual do recebimento da mensagem. Uma mensagem pode ser enviada ou recebida dividida em partes, e só será utilizada pela interface do chat quando transferida completamente. O estado de uma mensagem é representado pelo enum "PACKET_STATE".
+1 - Campo "message" que é utilizado para identificar o tipo da mensagem enviada.
+2 - Ponteiro para uma string que contém o nome do cliente.
+3 - Ponteiro para um bloco de memória onde as mensagens do cliente serão armazenadas.
+4 - Tamanho da mensagem recebida como contido no cabeçalho.
+5 - Estado atual do recebimento da mensagem. Uma mensagem pode ser enviada ou recebida dividida em partes, e só será utilizada pela interface do chat quando transferida completamente. O estado de uma mensagem é representado pelo enum "PACKET_STATE".
  
- - No programa cliente, a função que resolve entradas pelo usuário roda em uma thread utilizando funções implementadas pela API SDL 2.0.
+- No programa cliente, a função que resolve entradas pelo usuário roda em uma thread utilizando funções implementadas pela API SDL 2.0.
  
- Desenvolvimento do trabalho:
- A interação entre a dupla ocorreu online.
- Tarefas:
- Aparecida: Interface do chat, entrada do usuário e algumas funções da interface entre a conexão e o chat. Lógica de tratamento de mensagens.
- Flávio: Recebimento e envio de mensagens. Interface no servidor. "Limpeza" no código. Lógica de tratamento de mensagens.
+Desenvolvimento do trabalho:
+A interação entre a dupla ocorreu online.
+Tarefas:
+Aparecida: Interface do chat, entrada do usuário e algumas funções da interface entre a conexão e o chat. Lógica de tratamento de mensagens.
+Flávio: Recebimento e envio de mensagens. Interface no servidor. "Limpeza" no código. Lógica de tratamento de mensagens.
  
- obs: desconsiderar mensagens no servidor(ou não).
+obs: desconsiderar mensagens no servidor(ou não).
