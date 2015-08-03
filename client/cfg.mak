@@ -1,0 +1,10 @@
+SRC=src
+INC=include
+SDLinc=SDL/include
+LIB=SDL/lib
+OBJ=obj
+DIST=bin
+EXE=cl.exe
+SRCS=$(wildcard $(SRC)/*.c)
+OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+GCCARGS=-Wall -lws2_32 -L./$(LIB) -lSDL2
