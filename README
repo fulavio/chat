@@ -1,4 +1,7 @@
 - Funções para a utilização de sockets e tarefas como "decomposição de uma mensagem", e "comunicação especializada", foram implementadas no módulo 'networking'.
+
+- Mensagens privadas podem ser enviadas com o comando "/pm".
+ ex: /pm lucifer olá querido!
  
 - As mensagens são transmitidas no formato "cabeçalho/mensagem"(excluindo as barras). O cabeçalho possui três bytes. O primeiro byte contém o tipo da mensagem, e os dois bytes seguintes informam o tamanho em bytes da mensagem (excluindo o cabeçalho).
  
